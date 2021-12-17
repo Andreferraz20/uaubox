@@ -1,4 +1,4 @@
-import { PersonalInfo } from "../../model/PersonalInfo";
+import { PersonalInfo } from "../../entities/PersonalInfo";
 import {
     IPersonalInfoRepository,
     ICreatePersonalInfoDTO,
