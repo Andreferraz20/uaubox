@@ -1,11 +1,5 @@
+import { ICreatePersonalInfoDTO } from "../dtos/ICreatePersonalInfoDTO";
 import { PersonalInfo } from "../entities/PersonalInfo";
-
-interface ICreatePersonalInfoDTO {
-    cpf: string;
-    birthdate: string;
-    phone: string;
-    address: string;
-}
 
 interface IPersonalInfoRepository {
     create({
@@ -13,8 +7,8 @@ interface IPersonalInfoRepository {
         birthdate,
         phone,
         address,
-    }: ICreatePersonalInfoDTO): PersonalInfo;
-    findByCpf(cpf: string): PersonalInfo;
+    }: ICreatePersonalInfoDTO): Promise<PersonalInfo>;
+    /* findByCpf(cpf: string): PersonalInfo; */
 }
 
 export { IPersonalInfoRepository, ICreatePersonalInfoDTO };

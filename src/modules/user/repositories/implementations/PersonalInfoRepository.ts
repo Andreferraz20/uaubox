@@ -1,32 +1,22 @@
+import { getRepository, Repository } from "typeorm";
+
+import { ICreatePersonalInfoDTO } from "../../dtos/ICreatePersonalInfoDTO";
 import { PersonalInfo } from "../../entities/PersonalInfo";
-import {
-    IPersonalInfoRepository,
-    ICreatePersonalInfoDTO,
-} from "../IPersonalInfoRepository";
+import { IPersonalInfoRepository } from "../IPersonalInfoRepository";
 
 class PersonalInfoRepository implements IPersonalInfoRepository {
-    private personalInfo: PersonalInfo[];
-
-    // eslint-disable-next-line no-use-before-define
-    private static INSTANCE: PersonalInfoRepository;
+    private repository: Repository<PersonalInfo>;
 
     constructor() {
-        this.personalInfo = [];
+        this.repository = getRepository(PersonalInfo);
     }
 
-    public static getInstance(): PersonalInfoRepository {
-        if (!PersonalInfoRepository.INSTANCE) {
-            PersonalInfoRepository.INSTANCE = new PersonalInfoRepository();
-        }
-        return PersonalInfoRepository.INSTANCE;
-    }
-
-    create({
+    async create({
         cpf,
         birthdate,
         phone,
         address,
-    }: ICreatePersonalInfoDTO): PersonalInfo {
+    }: ICreatePersonalInfoDTO): Promise<PersonalInfo> {
         const personalInfo = new PersonalInfo();
         Object.assign(personalInfo, {
             cpf,
@@ -35,17 +25,16 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
             address,
         });
 
-        this.personalInfo.push(personalInfo);
-        console.log(personalInfo.id);
+        await this.repository.save(personalInfo);
         return personalInfo;
     }
 
-    findByCpf(cpf: string): PersonalInfo {
+    /* findByCpf(cpf: string): PersonalInfo {
         const personalInfo = this.personalInfo.find(
             (personalInfo) => personalInfo.cpf === cpf
         );
         return personalInfo;
-    }
+    } */
 }
 
 export { PersonalInfoRepository };
