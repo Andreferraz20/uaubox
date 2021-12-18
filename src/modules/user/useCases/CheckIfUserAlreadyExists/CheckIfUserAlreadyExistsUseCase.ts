@@ -1,7 +1,7 @@
+import { inject, injectable } from "tsyringe";
+
 import { PersonalInfo } from "../../entities/PersonalInfo";
 import { User } from "../../entities/User";
-import { PersonalInfoRepository } from "../../repositories/implementations/PersonalInfoRepository";
-import { UserRepository } from "../../repositories/implementations/UserRepository";
 import { IPersonalInfoRepository } from "../../repositories/IPersonalInfoRepository";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
@@ -10,24 +10,24 @@ interface IRequest {
     cpf: string;
 }
 
+@injectable()
 class CheckIfUserAlreadyExistsUseCase {
+    constructor(
+        @inject("UserRepository")
+        private userRepository: IUserRepository,
+        @inject("PersonalInfoRepository")
+        private personalInfoRepository: IPersonalInfoRepository
+    ) {}
     async execute({ email, cpf }: IRequest): Promise<void> {
-        const userRepository: IUserRepository = new UserRepository();
-
-        const personalInfoRepository: IPersonalInfoRepository =
-            new PersonalInfoRepository();
-
-        console.log(email);
-        const userEmailAlreadyExists: User = await userRepository.findByEmail(
-            email
-        );
+        const userEmailAlreadyExists: User =
+            await this.userRepository.findByEmail(email);
 
         if (userEmailAlreadyExists) {
             throw new Error("Email already exists");
         }
 
         const userCpfAlreadyExists: PersonalInfo =
-            await personalInfoRepository.findByCpf(cpf);
+            await this.personalInfoRepository.findByCpf(cpf);
 
         if (userCpfAlreadyExists) {
             throw new Error("CPF already exists");

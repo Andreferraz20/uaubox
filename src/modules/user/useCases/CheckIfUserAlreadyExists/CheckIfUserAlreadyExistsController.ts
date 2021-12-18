@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { CheckIfUserAlreadyExistsUseCase } from "./CheckIfUserAlreadyExistsUseCase";
 
@@ -10,8 +11,9 @@ class CheckIfUserAlreadyExistsController {
     ): Promise<void> {
         const { email, cpf } = request.body;
 
-        const checkIfUserAlreadyExistsUseCase =
-            new CheckIfUserAlreadyExistsUseCase();
+        const checkIfUserAlreadyExistsUseCase = container.resolve(
+            CheckIfUserAlreadyExistsUseCase
+        );
 
         checkIfUserAlreadyExistsUseCase.execute({
             email,
