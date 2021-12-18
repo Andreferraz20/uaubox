@@ -1,6 +1,7 @@
 import {
     Column,
     CreateDateColumn,
+    DeleteDateColumn,
     Entity,
     JoinColumn,
     OneToOne,
@@ -37,11 +38,8 @@ class User {
     @CreateDateColumn()
     updated_at?: Date;
 
-    @CreateDateColumn()
+    @DeleteDateColumn()
     deleted_at?: Date;
-
-    @Column({ nullable: true })
-    is_deleted?: boolean;
 
     constructor() {
         if (!this.id) {

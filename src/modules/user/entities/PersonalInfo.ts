@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    PrimaryColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity({ name: "user_info" })
@@ -24,11 +30,8 @@ class PersonalInfo {
     @CreateDateColumn()
     updated_at?: Date;
 
-    @CreateDateColumn()
+    @DeleteDateColumn()
     deleted_at?: Date;
-
-    @Column({ nullable: true })
-    is_deleted?: boolean;
 
     constructor() {
         if (!this.id) {
