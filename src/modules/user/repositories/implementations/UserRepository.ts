@@ -27,7 +27,7 @@ class UserRepository implements IUserRepository {
         await this.repository.save(user);
     }
 
-    list(): User[] {
+    /* list(): User[] {
         // return this.repo;
     }
 
@@ -35,7 +35,7 @@ class UserRepository implements IUserRepository {
         const user = this.user.find((user) => user.email === email);
 
         return user;
-    }
+    } */
 }
 
 export { UserRepository };

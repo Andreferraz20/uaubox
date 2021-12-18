@@ -22,23 +22,14 @@ class CreateUSerUseCase {
         private personalInfoRepository: IPersonalInfoRepository
     ) {}
 
-    execute({
-        name,
-        email,
-        password,
-        cpf,
-        birthdate,
-        phone,
-        address,
-    }: IRequest): void {
-        this.personalInfoRepository.create({ cpf, birthdate, phone, address });
-        const personalInfo = this.personalInfoRepository.findByCpf(cpf);
+    execute({ name, email, password }: IRequest): void {
+        // const personalInfo = this.personalInfoRepository.findByCpf(cpf);
 
         this.userRepository.create({
             name,
             email,
             password,
-            id_info: personalInfo.id,
+            id_info: "1234",
         });
     }
 }

@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { PersonalInfoRepository } from "../../repositories/implementations/PersonalInfoRepository";
-import { IUserRepository } from "../../repositories/IUserRepository";
 import { CreateUSerUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
