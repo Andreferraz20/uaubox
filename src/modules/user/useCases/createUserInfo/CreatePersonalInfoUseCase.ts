@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { PersonalInfo } from "../../entities/PersonalInfo";
 import { IPersonalInfoRepository } from "../../repositories/IPersonalInfoRepository";
 
 interface IRequest {
@@ -16,8 +17,20 @@ class CreateUserInfoUseCase {
         private personalInfoRepository: IPersonalInfoRepository
     ) {}
 
-    async execute({ cpf, birthdate, phone, address }: IRequest): Promise<void> {
-        this.personalInfoRepository.create({ cpf, birthdate, phone, address });
+    async execute({
+        cpf,
+        birthdate,
+        phone,
+        address,
+    }: IRequest): Promise<PersonalInfo> {
+        const personalInfo: PersonalInfo =
+            await this.personalInfoRepository.create({
+                cpf,
+                birthdate,
+                phone,
+                address,
+            });
+        return personalInfo;
     }
 }
 

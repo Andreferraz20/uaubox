@@ -29,12 +29,10 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
         return personalInfo;
     }
 
-    /* findByCpf(cpf: string): PersonalInfo {
-        const personalInfo = this.personalInfo.find(
-            (personalInfo) => personalInfo.cpf === cpf
-        );
+    async findByCpf(cpf: string): Promise<PersonalInfo> {
+        const personalInfo = await this.repository.findOne({ cpf });
         return personalInfo;
-    } */
+    }
 }
 
 export { PersonalInfoRepository };

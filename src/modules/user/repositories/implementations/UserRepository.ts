@@ -23,19 +23,14 @@ class UserRepository implements IUserRepository {
             password,
             id_info,
         });
-
         await this.repository.save(user);
     }
 
-    /* list(): User[] {
-        // return this.repo;
-    }
-
-    findByEmail(email: string): User {
-        const user = this.user.find((user) => user.email === email);
+    async findByEmail(email: string): Promise<User> {
+        const user = await this.repository.findOne({ email });
 
         return user;
-    } */
+    }
 }
 
 export { UserRepository };

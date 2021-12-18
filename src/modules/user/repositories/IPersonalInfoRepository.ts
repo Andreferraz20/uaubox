@@ -8,7 +8,7 @@ interface IPersonalInfoRepository {
         phone,
         address,
     }: ICreatePersonalInfoDTO): Promise<PersonalInfo>;
-    /* findByCpf(cpf: string): PersonalInfo; */
+    findByCpf(cpf: string): Promise<PersonalInfo>;
 }
 
 export { IPersonalInfoRepository, ICreatePersonalInfoDTO };

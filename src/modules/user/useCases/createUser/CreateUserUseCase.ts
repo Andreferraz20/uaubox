@@ -1,35 +1,29 @@
+import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
-import { IPersonalInfoRepository } from "../../repositories/IPersonalInfoRepository";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 interface IRequest {
     name: string;
     email: string;
     password: string;
-    cpf: string;
-    birthdate: string;
-    phone: string;
-    address: string;
+    id_info: string;
 }
 
 @injectable()
 class CreateUSerUseCase {
     constructor(
         @inject("UserRepository")
-        private userRepository: IUserRepository,
-        @inject("PersonalInfoRepository")
-        private personalInfoRepository: IPersonalInfoRepository
+        private userRepository: IUserRepository
     ) {}
 
-    execute({ name, email, password }: IRequest): void {
-        // const personalInfo = this.personalInfoRepository.findByCpf(cpf);
-
+    async execute({ name, email, password, id_info }: IRequest): Promise<void> {
+        const passwordHash = await hash(password, 8);
         this.userRepository.create({
             name,
             email,
-            password,
-            id_info: "1234",
+            password: passwordHash,
+            id_info,
         });
     }
 }

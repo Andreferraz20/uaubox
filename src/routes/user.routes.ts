@@ -1,16 +1,21 @@
 import { Router } from "express";
 
+import { CheckIfUserAlreadyExistsController } from "../modules/user/useCases/CheckIfUserAlreadyExists/CheckIfUserAlreadyExistsController";
 import { CreateUserController } from "../modules/user/useCases/createUser/CreateUserController";
-// import { listUsersController } from "../modules/user/useCases/listUsers";
+import { CreateUserInfoController } from "../modules/user/useCases/createUserInfo/CreatePersonalInfoController";
 
 const userRoutes = Router();
 
 const createUserController = new CreateUserController();
+const createUserInfoController = new CreateUserInfoController();
+const checkIfUserAlreadyExistsController =
+    new CheckIfUserAlreadyExistsController();
 
-userRoutes.post("/signup", createUserController.handle);
-
-/* userRoutes.get("/", (request, response) =>
-    listUsersController.handle(request, response)
-); */
+userRoutes.post(
+    "/signup",
+    checkIfUserAlreadyExistsController.handle,
+    createUserInfoController.handle,
+    createUserController.handle
+);
 
 export { userRoutes };
