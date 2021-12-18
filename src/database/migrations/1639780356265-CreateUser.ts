@@ -44,11 +44,6 @@ export class CreateUser1639780356265 implements MigrationInterface {
                         type: "timestamp",
                         isNullable: true,
                     },
-                    {
-                        name: "is_deleted",
-                        type: "boolean",
-                        default: false,
-                    },
                 ],
                 foreignKeys: [
                     {

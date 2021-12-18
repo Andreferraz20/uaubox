@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload, verify } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 
+import { AppError } from "../errors/AppError";
 import { UserRepository } from "../modules/user/repositories/implementations/UserRepository";
 import { usersInfo } from "../routes/usersInfo.routes";
 
@@ -17,7 +18,7 @@ export async function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-        throw new Error("Token missing!");
+        throw new AppError("Token missing!", 401);
     }
 
     const [, token] = authHeader.split(" ");
@@ -31,12 +32,12 @@ export async function ensureAuthenticated(
         const user = usersRepository.findById(id);
 
         if (!user) {
-            throw new Error("User does not exists");
+            throw new AppError("Invalid Token", 401);
         }
 
         response.locals.email = email;
         next();
     } catch {
-        throw new Error("Invalid Token!");
+        throw new AppError("Invalid Token!", 401);
     }
 }

@@ -43,11 +43,6 @@ export class CreateUserInfo1639776234009 implements MigrationInterface {
                         type: "timestamp",
                         isNullable: true,
                     },
-                    {
-                        name: "is_deleted",
-                        type: "boolean",
-                        default: false,
-                    },
                 ],
             })
         );
