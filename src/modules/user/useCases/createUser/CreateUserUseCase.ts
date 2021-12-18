@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { IPersonalInfoRepository } from "../../repositories/IPersonalInfoRepository";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
@@ -13,7 +15,9 @@ interface IRequest {
 
 class CreateUSerUseCase {
     constructor(
+        @inject("UserRepository")
         private userRepository: IUserRepository,
+        @inject("PersonalInfoRepository")
         private personalInfoRepository: IPersonalInfoRepository
     ) {}
 

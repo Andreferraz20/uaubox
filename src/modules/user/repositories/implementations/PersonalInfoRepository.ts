@@ -21,7 +21,12 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
         return PersonalInfoRepository.INSTANCE;
     }
 
-    create({ cpf, birthdate, phone, address }: ICreatePersonalInfoDTO): void {
+    create({
+        cpf,
+        birthdate,
+        phone,
+        address,
+    }: ICreatePersonalInfoDTO): PersonalInfo {
         const personalInfo = new PersonalInfo();
         Object.assign(personalInfo, {
             cpf,
@@ -31,6 +36,8 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
         });
 
         this.personalInfo.push(personalInfo);
+        console.log(personalInfo.id);
+        return personalInfo;
     }
 
     findByCpf(cpf: string): PersonalInfo {

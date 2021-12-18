@@ -1,38 +1,34 @@
+import { getRepository, Repository } from "typeorm";
+
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { User } from "../../entities/User";
-import { ICreateUserDTO, IUserRepository } from "../IUserRepository";
+import { IUserRepository } from "../IUserRepository";
 
 class UserRepository implements IUserRepository {
-    private user: User[];
-
-    // eslint-disable-next-line no-use-before-define
-    private static INSTANCE: UserRepository;
+    private repository: Repository<User>;
 
     constructor() {
-        this.user = [];
+        this.repository = getRepository(User);
     }
 
-    public static getInstance(): UserRepository {
-        if (!UserRepository.INSTANCE) {
-            UserRepository.INSTANCE = new UserRepository();
-        }
-        return UserRepository.INSTANCE;
-    }
-
-    create({ name, email, password, id_info }: ICreateUserDTO): void {
-        const user = new User();
-
-        Object.assign(user, {
+    async create({
+        name,
+        email,
+        password,
+        id_info,
+    }: ICreateUserDTO): Promise<void> {
+        const user = this.repository.create({
             name,
             email,
             password,
             id_info,
         });
 
-        this.user.push(user);
+        await this.repository.save(user);
     }
 
     list(): User[] {
-        return this.user;
+        // return this.repo;
     }
 
     findByEmail(email: string): User {

@@ -8,7 +8,12 @@ interface ICreatePersonalInfoDTO {
 }
 
 interface IPersonalInfoRepository {
-    create({ cpf, birthdate, phone, address }: ICreatePersonalInfoDTO): void;
+    create({
+        cpf,
+        birthdate,
+        phone,
+        address,
+    }: ICreatePersonalInfoDTO): PersonalInfo;
     findByCpf(cpf: string): PersonalInfo;
 }
 
