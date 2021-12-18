@@ -1,13 +1,13 @@
 import { Router } from "express";
 
-import { createUserController } from "../modules/user/useCases/createUser";
+import { CreateUserController } from "../modules/user/useCases/createUser/CreateUserController";
 import { listUsersController } from "../modules/user/useCases/listUsers";
 
 const userRoutes = Router();
 
-userRoutes.post("/signup", (request, response) =>
-    createUserController.handle(request, response)
-);
+const createUserController = new CreateUserController();
+
+userRoutes.post("/signup", createUserController.handle);
 
 userRoutes.get("/", (request, response) =>
     listUsersController.handle(request, response)

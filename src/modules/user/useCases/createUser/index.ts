@@ -1,4 +1,4 @@
-import { PersonalInfoRepository } from "../../repositories/implementations/PersonalInfoRepository";
+/* import { PersonalInfoRepository } from "../../repositories/implementations/PersonalInfoRepository";
 import { UserRepository } from "../../repositories/implementations/UserRepository";
 import { CreateUserController } from "./CreateUserController";
 import { CreateUSerUseCase } from "./CreateUserUseCase";
@@ -17,4 +17,4 @@ const createUserController = new CreateUserController(
     personalInfoRepository
 );
 
-export { createUserController };
+export { createUserController }; */
