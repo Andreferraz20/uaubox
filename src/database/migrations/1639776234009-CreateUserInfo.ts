@@ -39,7 +39,7 @@ export class CreateUserInfo1639776234009 implements MigrationInterface {
                         default: "now()",
                     },
                     {
-                        name: "removed_at",
+                        name: "deleted_at",
                         type: "timestamp",
                         isNullable: true,
                     },

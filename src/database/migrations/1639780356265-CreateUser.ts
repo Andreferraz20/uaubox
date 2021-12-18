@@ -40,7 +40,7 @@ export class CreateUser1639780356265 implements MigrationInterface {
                         default: "now()",
                     },
                     {
-                        name: "removed_at",
+                        name: "deleted_at",
                         type: "timestamp",
                         isNullable: true,
                     },
