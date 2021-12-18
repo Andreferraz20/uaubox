@@ -33,6 +33,11 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
         const personalInfo = await this.repository.findOne({ cpf });
         return personalInfo;
     }
+
+    findById(id: string): Promise<PersonalInfo> {
+        const personalInfo = this.repository.findOne(id);
+        return personalInfo;
+    }
 }
 
 export { PersonalInfoRepository };
