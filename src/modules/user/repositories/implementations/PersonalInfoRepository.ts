@@ -34,9 +34,13 @@ class PersonalInfoRepository implements IPersonalInfoRepository {
         return personalInfo;
     }
 
-    findById(id: string): Promise<PersonalInfo> {
+    async findById(id: string): Promise<PersonalInfo> {
         const personalInfo = this.repository.findOne(id);
         return personalInfo;
+    }
+
+    async softDelete(id: string): Promise<void> {
+        await this.repository.softDelete(id);
     }
 }
 

@@ -10,6 +10,7 @@ interface IPersonalInfoRepository {
     }: ICreatePersonalInfoDTO): Promise<PersonalInfo>;
     findByCpf(cpf: string): Promise<PersonalInfo>;
     findById(id: string): Promise<PersonalInfo>;
+    softDelete(id: string): Promise<void>;
 }
 
 export { IPersonalInfoRepository, ICreatePersonalInfoDTO };

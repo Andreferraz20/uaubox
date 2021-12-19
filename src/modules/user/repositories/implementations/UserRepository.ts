@@ -36,6 +36,10 @@ class UserRepository implements IUserRepository {
         const user = await this.repository.findOne(id);
         return user;
     }
+
+    async softDelete(id: string): Promise<void> {
+        await this.repository.softDelete(id);
+    }
 }
 
 export { UserRepository };
