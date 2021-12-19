@@ -136,3 +136,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ---
 Feito com ❤️ por André Ferraz 👋🏽 Entre em contato!
 
+<img src="https://img.shields.io/badge/license-MIT-blue">
+
+
