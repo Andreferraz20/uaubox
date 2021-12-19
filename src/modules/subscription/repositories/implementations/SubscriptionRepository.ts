@@ -1,16 +1,15 @@
 import { getRepository, Repository } from "typeorm";
+
 import { ICreateSubscriptionDTO } from "../../dtos/ICreateSubscriptionDTO";
 import { Subscription, CANCEL_TYPES } from "../../entities/Subscription";
 import { ISubscriptionRepository } from "../ISubscriptionRepository";
 
 class SubscriptionRepository implements ISubscriptionRepository {
-
     private repository: Repository<Subscription>;
 
     constructor() {
         this.repository = getRepository(Subscription);
     }
-
 
     create({
         type: SUBSCRIPTION_TYPES,
@@ -18,7 +17,8 @@ class SubscriptionRepository implements ISubscriptionRepository {
         throw new Error("Method not implemented.");
     }
     async listAll(user_info_id: string): Promise<Subscription[]> {
-        const subscriptions = await 
+        // inacabado
+        return [];
     }
     findOne(id: string): Promise<Subscription> {
         throw new Error("Method not implemented.");
