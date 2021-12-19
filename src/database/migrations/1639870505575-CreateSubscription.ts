@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+/* import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateSubscription1639870505575 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
                 name: "subscription",
-                columns: [
+                columns: [s
                     {
                         name: "id",
                         type: "uuid",
@@ -74,4 +74,4 @@ export class CreateSubscription1639870505575 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("subscription");
     }
-}
+} */
